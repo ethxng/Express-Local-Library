@@ -47,7 +47,8 @@ app.use(function(err, req, res, next) {
 // Set up mongoose connection
 let mongoose = require('mongoose');
 const { detectSeries } = require('async');
-let mongoDB = 'mongodb+srv://ethxng:0311Ethan@cluster0.8rote.mongodb.net/local_library?retryWrites=true&w=majority';
+let dev_db_url = 'mongodb+srv://ethxng:0311Ethan@cluster0.8rote.mongodb.net/local_library?retryWrites=true&w=majority';
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 let db = mongoose.connection;
 db.on('on', console.error.bind(console, 'MongoDB Connection Error'));
